@@ -1,0 +1,15 @@
+@startuml
+[*] --> JuegoCreado
+
+JuegoCreado --> JuegoEnCurso : IniciarJuego
+JuegoEnCurso --> JuegoTerminado : TerminarJuego
+
+JuegoTerminado --> [*]
+
+JuegoEnCurso --> TableroCreado : CrearTablero
+TableroCreado --> EsperandoIntento : EsperarIntento
+EsperandoIntento --> IntentoRealizado : RealizarIntento
+IntentoRealizado --> EsperandoIntento : AceptarIntento
+IntentoRealizado --> JuegoTerminado : AlcanzarMaxIntentos
+
+@enduml
