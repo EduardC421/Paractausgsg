@@ -1,16 +1,16 @@
 @startuml 
 class Tablero { 
 - intentos : List<Intento> 
-- CodigoSecreto codigoSecreto 
-- int maxIntentos = 10 
+- codigoSecreto CodigoSecreto 
+- maxIntentos : int
 }
 
 class CodigoSecreto { 
-- List colores 
+- colores : List<Color> 
  }
 
 class Intento { 
-- Codigo codigo 
+- codigo : Codigo 
 - fichas : Ficha
 
 }
@@ -23,8 +23,8 @@ class Color {
 }
 
 class Jugador { 
-- String nombre 
-- int puntos 
+- nombre : string
+- puntos : int
 }
 
 class Juego { 
@@ -35,7 +35,7 @@ class Juego {
 
 Class Ficha{
     +tamano: bool
-    +color: array[string]
+    +color: List<Color>
 
 }
 
@@ -48,6 +48,6 @@ Codigo "1" --> "*" Color
 Juego "1" *-- "2" Jugador 
 Juego "1" *-- "*" Ficha
 Ficha "1" --> "1" Color
+Intento "1" --> "1" Ficha
  
 @enduml
-
