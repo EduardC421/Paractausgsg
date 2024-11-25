@@ -1,52 +1,51 @@
-@startuml
-class Tablero {
-    - List<Intento> intentos
-    - CodigoSecreto codigoSecreto
-    - int maxIntentos = 10
-    + bool verificarIntento(Codigo intento)
+@startuml 
+class Tablero { 
+- List intentos 
+- CodigoSecreto codigoSecreto 
+- int maxIntentos = 10 
 }
 
-class CodigoSecreto {
-    - List<Color> colores
-    + bool esCorrecto(Codigo codigo)
-    + int contarColoresCorrectos(Codigo codigo)
-    + int contarColoresDesordenados(Codigo codigo)
+class CodigoSecreto { 
+- List colores 
+ }
+
+class Intento { 
+- Codigo codigo 
+- int fichasNegras 
+- int fichasBlancas 
+
 }
 
-class Intento {
-    - Codigo codigo
-    - int fichasNegras
-    - int fichasBlancas
-    + calcularFeedback(CodigoSecreto codigoSecreto)
+class Codigo { 
+- List colores
+ }
+
+class Color {
 }
 
-class Codigo {
-    - List<Color> colores
+class Jugador { 
+- String nombre 
+- int puntos 
 }
 
-enum Color {
-    ROJO, AZUL, VERDE, AMARILLO, NARANJA, MORADO
+class Juego { 
+- Jugador creador 
+- Jugador adivinador 
+- Tablero tablero 
 }
 
-class Jugador {
-    - String nombre
-    - int puntos
-    + realizarIntento(Codigo codigo)
+Class Ficha{
+    +tamano: bool
+    +color: array[string]
+
 }
 
-class Partida {
-    - Jugador creador
-    - Jugador adivinador
-    - Tablero tablero
-    + iniciar()
-    + determinarGanador()
-}
-
-Partida "1" --> "1" Tablero
-Tablero "1" --> "1" CodigoSecreto
-Tablero "1" --> "*" Intento
-Intento "1" --> "1" Codigo
-CodigoSecreto "1" --> "*" Color
-Codigo "1" --> "*" Color
-Partida "1" --> "2" Jugador
+Juego "1" *-- "1" Tablero 
+Tablero "1" --> "1" CodigoSecreto 
+Tablero "1" --> "*" Intento 
+Intento "1" --> "1" Codigo 
+CodigoSecreto "1" --> "*" Color 
+Codigo "1" --> "*" Color 
+Juego "1" --> "2" Jugador 
+Codigo "1" --> "*" Color 
 @enduml
